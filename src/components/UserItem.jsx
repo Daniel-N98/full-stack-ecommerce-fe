@@ -20,7 +20,7 @@ export default function UserItem({ loadState }) {
       });
   }, [user_id, item_id]);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loading loadState={loadState} />;
 
   return (
     <div>
@@ -31,7 +31,7 @@ export default function UserItem({ loadState }) {
           <p style={{ color: "red" }}>£{item.cost}</p>
         </section>
       ) : (
-        <h2>Item not found.</h2>
+        <h2 className="text-center">Item not found.</h2>
       )}
     </div>
   );

@@ -1,0 +1,10 @@
+.App {
+  background-color: gray;
+  height: 100vh;
+}
+
+#wrapper {
+  width: 75%;
+  padding-top: 30px;
+  margin: 0 auto;
+}

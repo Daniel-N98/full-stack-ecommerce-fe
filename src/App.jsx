@@ -11,18 +11,20 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route
-          path="/items"
-          element={<Items loadState={{ isLoading, setIsLoading }} />}
-        />
-        <Route
-          path="/items/:user_id/:item_id"
-          element={<UserItem loadState={{ isLoading, setIsLoading }} />}
-        />
-      </Routes>
+      <div id="wrapper">
+        <Header />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route
+            path="/items/:user_id"
+            element={<Items loadState={{ isLoading, setIsLoading }} />}
+          />
+          <Route
+            path="/items/:user_id/:item_id"
+            element={<UserItem loadState={{ isLoading, setIsLoading }} />}
+          />
+        </Routes>
+      </div>
     </div>
   );
 }
