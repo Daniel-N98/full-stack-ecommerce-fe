@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { fetchUserItemByID } from "../utils/requests";
+import Loading from "./Loading";
 
-export default function UserItem() {
+export default function UserItem({ loadState }) {
   const { user_id, item_id } = useParams();
-  const [item, setItem] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [item, setItem] = useState({});
+  const { isLoading, setIsLoading } = loadState;
 
   useEffect(() => {
     setIsLoading(true);
@@ -19,9 +20,7 @@ export default function UserItem() {
       });
   }, [user_id, item_id]);
 
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
+  if (isLoading) return <Loading />;
 
   return (
     <div>
