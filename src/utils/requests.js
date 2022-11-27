@@ -7,8 +7,16 @@ const baseURL = axios.create({
 export const fetchUserItems = async (user_id) => {
   try {
     const { data } = await baseURL.get(`/items/${user_id}`);
-    console.log(data);
     return data.items;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchUserItemByID = async (user_id, item_id) => {
+  try {
+    const { data } = await baseURL.get(`/items/${user_id}/${item_id}`);
+    return data.item;
   } catch (error) {
     throw error;
   }
