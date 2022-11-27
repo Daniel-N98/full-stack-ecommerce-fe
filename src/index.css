@@ -4,4 +4,19 @@
   box-sizing: border-box;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+  transition: transform 0.25s ease-out;
+}
+
+.link:hover {
+  text-decoration: none;
+  border-bottom: 2px solid white;
+}
+
 /* Consistency is key, buttons, inputs, texts etc should all have a consistant view. */

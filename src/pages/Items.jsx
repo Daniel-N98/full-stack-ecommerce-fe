@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { fetchUserItems } from "../utils/requests";
 
 export default function Items({ loadState }) {
   const [items, setItems] = useState([]);
   const { isLoading, setIsLoading } = loadState;
+  const { user_id } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    fetchUserItems(3)
+    fetchUserItems(user_id)
       .then((items) => {
         setIsLoading(false);
         setItems(items);
@@ -20,11 +21,11 @@ export default function Items({ loadState }) {
       });
   }, []);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loading loadState={loadState} />;
 
   return (
     <section className="items-list">
-      <h1>Items page</h1>
+      <h1 className="text-center">Items page</h1>
       {items.map((item) => {
         return (
           <section
