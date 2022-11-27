@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 import { fetchUserItems } from "../utils/requests";
 
-export default function Items({ user_id }) {
+export default function Items({ loadState }) {
   const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, setIsLoading } = loadState;
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,11 +18,9 @@ export default function Items({ user_id }) {
         setIsLoading(false);
         alert(error);
       });
-  }, [user_id]);
+  }, []);
 
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
+  if (isLoading) return <Loading />;
 
   return (
     <section className="items-list">
