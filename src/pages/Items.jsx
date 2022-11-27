@@ -1,41 +1,45 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { fetchUserItems } from "../utils/requests";
 
 export default function Items({ user_id }) {
-  const [items, setItems] = useState([
-    { name: "item1", description: "item1 desc", cost: 500 },
-  ]);
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchUserItems(3)
       .then((items) => {
+        setIsLoading(false);
         setItems(items);
       })
       .catch((error) => {
+        setIsLoading(false);
         alert(error);
       });
-  }, [items]);
+  }, [user_id]);
 
-  const updateItems = (event) => {
-    event.preventDefault();
-    console.log("go");
-    user_id = 3;
-  };
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
-    <section>
+    <section className="items-list">
       <h1>Items page</h1>
-      <button onClick={updateItems}>Click</button>
       {items.map((item) => {
         return (
-          <div
+          <section
+            className="item-preview"
             key={item.name + item.description}
             style={{ border: "2px solid", margin: "30px" }}
           >
             <h3>Name: {item.name}</h3>
             <p>Desc: {item.description}</p>
             <p style={{ color: "red" }}>£{item.cost}</p>
-          </div>
+            <button>
+              <Link to={`/items/${item.user_id}/${item.item_id}`}>View</Link>
+            </button>
+          </section>
         );
       })}
     </section>
