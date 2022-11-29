@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import ItemSearch from "../components/ItemSearch";
 import Loading from "../components/Loading";
 import { fetchUserItems } from "../utils/requests";
 
@@ -25,6 +26,7 @@ export default function Items({ loadState }) {
 
   return (
     <section className="items-list">
+      <ItemSearch />
       <h1 className="text-center">Items page</h1>
       {items.map((item) => {
         return (
