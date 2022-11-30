@@ -1,6 +1,3 @@
-import { useState } from "react";
-import Loading from "./Loading";
-
 export default function ItemSearch({ searchTermState }) {
   const { searchTerm, setSearchTerm } = searchTermState;
 

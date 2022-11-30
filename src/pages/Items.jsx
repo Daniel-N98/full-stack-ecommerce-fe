@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import ItemSearch from "../components/ItemSearch";
 import ItemsList from "../components/ItemsList.jsx";
-import { fetchItems } from "../utils/requests";
 
 export default function Items() {
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <section className="items-list">
-      <ItemSearch searchTermState={{ searchTerm, setSearchTerm }} />
       <h1 className="text-center">Items page</h1>
+      <section id="search">
+        <ItemSearch searchTermState={{ searchTerm, setSearchTerm }} />
+      </section>
       <ItemsList searchTerm={searchTerm} />
     </section>
   );
