@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route
-            path="/items/:user_id"
+            path="/items"
             element={<Items loadState={{ isLoading, setIsLoading }} />}
           />
           <Route
