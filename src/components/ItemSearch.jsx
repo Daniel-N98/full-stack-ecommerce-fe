@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Loading from "./Loading";
 
-export default function ItemSearch() {
-  const [item, setItem] = useState("");
+export default function ItemSearch({ searchTermState }) {
+  const { searchTerm, setSearchTerm } = searchTermState;
 
   return (
     <section id="item-search-bar">
@@ -12,9 +13,9 @@ export default function ItemSearch() {
           type="text"
           className="search-input"
           name="item-search"
-          value={item}
+          value={searchTerm}
           placeholder="Enter an item name"
-          onChange={(event) => setItem(event.target.value)}
+          onChange={(event) => setSearchTerm(event.target.value)}
         />
       </form>
     </section>
