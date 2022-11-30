@@ -5,6 +5,7 @@ const baseURL = axios.create({
 });
 
 export const fetchItems = async () => {
+  console.log("FI called");
   try {
     const { data } = await baseURL.get("/items");
     return data.items;
@@ -14,6 +15,7 @@ export const fetchItems = async () => {
 };
 
 export const fetchUserItems = async (user_id) => {
+  console.log("FUI called");
   try {
     const { data } = await baseURL.get(`/items/${user_id}`);
     return data.items;
@@ -23,6 +25,7 @@ export const fetchUserItems = async (user_id) => {
 };
 
 export const fetchUserItemByID = async (user_id, item_id) => {
+  console.log("FUIBI called");
   try {
     const { data } = await baseURL.get(`/items/${user_id}/${item_id}`);
     return data.item;

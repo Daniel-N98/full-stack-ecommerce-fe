@@ -2,22 +2,25 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchItems } from "../utils/requests";
 
-export default function ItemsList({ searchTerm, itemsIn }) {
+let itemsClone;
+
+export default function ItemsList({ searchTerm }) {
+  function filterList() {
+    return itemsClone.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     setIsLoading(true);
-    if (items[0]) {
-      setItems((items) =>
-        items.filter((item) =>
-          item.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
+    if (itemsClone) {
+      setItems(filterList());
       setIsLoading(false);
     } else {
       fetchItems().then((itemsRe) => {
-        setItems(itemsRe.filter((item) => item.name.includes(searchTerm)));
+        itemsClone = [...itemsRe];
+        setItems(filterList());
         setIsLoading(false);
       });
     }
@@ -35,10 +38,9 @@ export default function ItemsList({ searchTerm, itemsIn }) {
             key={item.name + item.description}
             style={{ border: "2px solid", margin: "30px" }}
           >
-            <img src={item.preview_url} alt="Item preview image" />
             <h2>Name: {item.name}</h2>
             <p>Description: {item.description}</p>
-            <p>Category: {item.category}</p>
+            <p>Category: {item.category_id}</p>
             <p>Quantity: {item.quantity}</p>
             <p>
               <strong>Cost: £{item.cost}</strong>
